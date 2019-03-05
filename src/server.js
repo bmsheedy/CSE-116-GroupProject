@@ -23,7 +23,7 @@ var express = require('express');
 var app = express();
 var server = app.listen(63343);	//tells what port to host the game on
 
-app.use(express.static('public'));
+app.use(express.static('src'));
 
 console.log("Testing");	//tells a message to console, debugging purpose to let me know if it successfully runs
 
