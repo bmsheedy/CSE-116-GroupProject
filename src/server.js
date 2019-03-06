@@ -7,11 +7,8 @@ complete product and may be changed later to work better.*/
 
 var listOfPlayers = [];
 
-function players(player) {//, x, y, radius) {	to add later
+function players(player) {
     this.player = player;
-    //this.x = x;
-    //this.y = y;
-    //this.radius = radius;
 }
 
 // above will be used to show player clients
@@ -42,38 +39,16 @@ io.sockets.on('connection', newConnection);
 function newConnection(socket) {
     console.log('Person connected! : ' + socket.id);
     socket.on('new', playerInfo);
-    listOfPlayers.push(socket.id);
 
     function playerInfo(data) {
         socket.broadcast.emit('new', data);
         // io.sockets.emit('mouse', data);
         // above is the global to send to all clients, including self
         console.log(data);
-        var playerBlob = new players(socket.id); //, data.x, data.y, data.radius);, to add later
+        var playerBlob = new players(socket.id);
         //listOfPlayers.push(playerBlob);
-        listOfPlayers.push(socket.id);
+        listOfPlayers.push(playerBlob);
     }
-    //socket.on('updating', playerInfoUpdate);
-
-    /*function playerInfoUpdate(data) {
-        socket.broadcast.emit('updating', data);
-        // io.sockets.emit('mouse', data);
-        // above is the global to send to all clients, including self
-        console.log(data);
-
-        var whichPlayer;
-        for (var i = 0; i < whichPlayer.length; i++) {		//tells the server the ID of each player to properly update them server-side
-            if (socket.id == whichPlayer[i].id) {
-                whichPlayer = whichPlayer[i]
-            }
-        }
-
-        whichPlayer.x = data.x;
-        whichPlayer.y = data.y;
-        whichPlayer.radius = data.radius;
-        //var playerBlob = new players(socket.id, data.x, data.y, data.radius);
-        //listOfPlayers.push(playerBlob);
-    }*/
 }
 
 //below is a way to store data to a JSON file in Node.js
