@@ -3,20 +3,7 @@ when other parts are finished so that the server can run properly.
 This is a basic schematic of the server and is not the perfectly
 complete product and may be changed later to work better.*/
 //Coded using examples off of YouTube and Google, notably YT Channel Coding Train
-
-
-var listOfPlayers = [];
-
-function players(player) {//, x, y, radius) {	to add later
-    this.player = player;
-    //this.x = x;
-    //this.y = y;
-    //this.radius = radius;
-}
-
-// above will be used to show player clients
-
-
+var listOfPlayers = []
 
 var express = require('express');
 
@@ -31,18 +18,17 @@ var socket = require('socket.io');
 
 var io = socket(server);
 
-setInterval(oncePerSecond, 16.66);		// sets the update time server-side. 1000 is in milliseconds. 1000 = 1sec, 16.66 = 60 FPS
+//setInterval(oncePerSecond, 16.66);		// sets the update time server-side. 1000 is in milliseconds. 1000 = 1sec, 16.66 = 60 FPS
 
-function oncePerSecond() {				// this function will relay a message continually to clients with a list of players/messages
-    io.sockets.emit('oncePerSecond'); //in real use send listOfPlayers
-}
+//function oncePerSecond() {				// this function will relay a message continually to clients with a list of players/messages
+//    io.sockets.emit('oncePerSecond'); //in real use send listOfPlayers
+//}
 
 io.sockets.on('connection', newConnection);
 
 function newConnection(socket) {
     console.log('Person connected! : ' + socket.id);
     socket.on('new', playerInfo);
-    listOfPlayers.push(socket.id);
 
     function playerInfo(data) {
         socket.broadcast.emit('new', data);
@@ -53,27 +39,6 @@ function newConnection(socket) {
         //listOfPlayers.push(playerBlob);
         listOfPlayers.push(socket.id);
     }
-    //socket.on('updating', playerInfoUpdate);
-
-    /*function playerInfoUpdate(data) {
-        socket.broadcast.emit('updating', data);
-        // io.sockets.emit('mouse', data);
-        // above is the global to send to all clients, including self
-        console.log(data);
-
-        var whichPlayer;
-        for (var i = 0; i < whichPlayer.length; i++) {		//tells the server the ID of each player to properly update them server-side
-            if (socket.id == whichPlayer[i].id) {
-                whichPlayer = whichPlayer[i]
-            }
-        }
-
-        whichPlayer.x = data.x;
-        whichPlayer.y = data.y;
-        whichPlayer.radius = data.radius;
-        //var playerBlob = new players(socket.id, data.x, data.y, data.radius);
-        //listOfPlayers.push(playerBlob);
-    }*/
 }
 
 //below is a way to store data to a JSON file in Node.js
