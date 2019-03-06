@@ -2,6 +2,8 @@ var player;
 
 var zoom = 1;
 
+socket = io.connect('http://localhost:63343');
+
 function setup() {
     createCanvas(600, 600);
     player = new player(0, 0, 64);
@@ -16,7 +18,7 @@ function draw() {
     scale(zoom);
     translate(-player.pos.x, -player.pos.y);
 
-    blob.show();
-    blob.update();
+    player.show();
+    player.update();
 
 }
