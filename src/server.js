@@ -18,11 +18,11 @@ var socket = require('socket.io');
 
 var io = socket(server);
 
-//setInterval(oncePerSecond, 16.66);		// sets the update time server-side. 1000 is in milliseconds. 1000 = 1sec, 16.66 = 60 FPS
+setInterval(oncePerSecond, 16.66);		// sets the update time server-side. 1000 is in milliseconds. 1000 = 1sec, 16.66 = 60 FPS
 
-//function oncePerSecond() {				// this function will relay a message continually to clients with a list of players/messages
-//    io.sockets.emit('oncePerSecond'); //in real use send listOfPlayers
-//}
+function oncePerSecond() {				// this function will relay a message continually to clients with a list of players/messages
+    io.sockets.emit('oncePerSecond'); //in real use send listOfPlayers
+}
 
 io.sockets.on('connection', newConnection);
 
