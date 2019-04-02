@@ -1,7 +1,6 @@
 function food(x, y, rad) {
     this.pos = createVector(x, y);
     this.radius = rad;
-    this.vel = createVector(0,0);
 
     this.show = function() {
         fill(255);
