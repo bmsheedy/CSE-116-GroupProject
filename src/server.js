@@ -44,7 +44,7 @@ function newConnection(socket) {
 //below is a way to store data to a JSON file in Node.js
 
 var fileSystem = require('fs')
-var stored = JSON.stringify(listOfPlayers);	//null is from documentation. unsure of meaning. 2 is indentation
+var stored = JSON.stringify(listOfPlayers);
 fileSystem.writeFile('data.json', stored, finish);
 
 function finish(exam) {
