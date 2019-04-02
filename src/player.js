@@ -1,6 +1,6 @@
-function player(x, y, r) {
+function player(x, y, rad) {
     this.pos = createVector(x, y);
-    this.r = r;
+    this.radius = rad;
     this.vel = createVector(0,0);
 
     this.update = function() {
@@ -12,6 +12,6 @@ function player(x, y, r) {
 
     this.show = function() {
         fill(255);
-        ellipse(this.pos.x, this.pos.y, this.r*2, this.r*2);
+        ellipse(this.pos.x, this.pos.y, this.radius*2, this.radius*2);
     }
 }

@@ -1,24 +1,28 @@
 var player;
-
-var zoom = 1;
-
-socket = io.connect('http://localhost:63343');
+var fList = [];
+socket = io.connect('http://localhost:43343');
 
 function setup() {
-    createCanvas(600, 600);
-    player = new player(0, 0, 64);
+    createCanvas(800, 800);
+    player = new player(width/2,height/2, 20);
+
+    for(var i=0; i<10; i++){
+        fList[i] = new food(random(0, 800), random(0, 800), 10);
+    }
 }
+
 
 function draw() {
     background(0);
 
-    //translate(width/2, height/2);
-    //var newzoom = 64 / player.r;
-    //zoom = lerp(zoom, newzoom, 0.1);
-    //scale(zoom);
-    //translate(-player.pos.x, -player.pos.y);
+    translate(width/2, height/2);
+    translate(-player.pos.x, -player.pos.y);
 
     player.show();
     player.update();
+
+    for(var i=0; i<fList.length; i++){
+        fList[i].show();
+    }
 
 }

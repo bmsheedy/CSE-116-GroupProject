@@ -8,7 +8,7 @@ var listOfPlayers = []
 var express = require('express');
 
 var app = express();
-var server = app.listen(63343);	//tells what port to host the game on
+var server = app.listen(43343);	//tells what port to host the game on
 
 app.use(express.static('src'));
 
@@ -18,7 +18,7 @@ var socket = require('socket.io');
 
 var io = socket(server);
 
-setInterval(oncePerSecond, 16.66);		// sets the update time server-side. 1000 is in milliseconds. 1000 = 1sec, 16.66 = 60 FPS
+setInterval(oncePerSecond, 33.33);		// sets the update time server-side. 1000 is in milliseconds. 1000 = 1sec, 16.66 = 60 FPS
 
 function oncePerSecond() {				// this function will relay a message continually to clients with a list of players/messages
     io.sockets.emit('oncePerSecond'); //in real use send listOfPlayers
