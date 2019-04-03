@@ -3,26 +3,35 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node ./bin/www",
+    "test": "jasmine"
   },
   "dependencies": {
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
     "express": "^4.16.4",
     "http-errors": "~1.6.2",
+    "jasmine": "^3.3.1",
+    "jasmine-node": "^1.16.2",
+    "karma": "^4.0.1",
     "morgan": "~1.9.0",
     "p5": "^0.7.3",
     "p5-setup": "^1.0.2",
     "phaser": "^3.16.2",
     "pug": "^2.0.3",
-    "socket.io": "^2.2.0"
+    "socket.io": "^2.2.0",
+    "source-map": "^0.7.3",
+    "util": "^0.11.1"
   },
   "description": "socket testing",
   "main": "server.js",
   "bin": {
     "test-for-proj": "server.js"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "karma-chrome-launcher": "^2.2.0",
+    "karma-jasmine": "^2.0.1"
+  },
   "author": "Rafi",
   "license": "ISC"
 }
