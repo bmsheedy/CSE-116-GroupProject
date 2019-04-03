@@ -17,8 +17,9 @@ function Player(x, y, rad) {        //constructor for players
     //below determines what happens when you eat food
     this.eatFood = function(f) {
         var dis = p5.Vector.dist(this.vec, f.vec);  //p5 documentation for vector distances
-        if(dis < this.radius + f.radius){   //compares to see if the ball collides with food
-            this.radius += (f.radius * 0.05);    //this determines how big the player should grow everytime you eat food.
+        var RR = this.radius + f.radius;
+        if(dis < RR){   //compares to see if the ball collides with food
+            this.radius += .25;    //this determines how big the player should grow everytime you eat food.
             return true;
         }
         else{
