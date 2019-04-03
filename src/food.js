@@ -1,10 +1,12 @@
 function food(x, y, rad) {
-    this.pos = createVector(x, y);
+    this.vec = createVector(x, y);
     this.radius = rad;
+
+    var r1 =
 
     this.show = function() {
         fill(255);
-        ellipse(this.pos.x, this.pos.y, this.radius*2, this.radius*2);
+        ellipse(this.vec.x, this.vec.y, this.radius*2, this.radius*2);
     }
 }
 
