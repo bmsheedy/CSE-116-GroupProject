@@ -1,4 +1,6 @@
-function player(x, y, rad) {
+var foods;
+
+function Player(x, y, rad) {
     this.pos = createVector(x, y);
     this.radius = rad;
     this.velocity = createVector(0,0);
@@ -16,9 +18,9 @@ function player(x, y, rad) {
     }
 
     this.eats = function(f) {
-        var dis = p5.Vector.dist(this.pos, f.pos)
-        if(f.r + this.r > dis){
-            this.radius += 2;
+        var dis = p5.Vector.dist(this.pos, f.pos);
+        if(dis < this.radius + f.radius){
+            this.radius += (f.radius * 0.1);    //this determines how big the player should grow everytime you eat food.
             return true;
         }
         else{
