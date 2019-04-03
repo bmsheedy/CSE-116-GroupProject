@@ -18,7 +18,7 @@ function draw() {
     translate(width/2-player.pos.x, height/2-player.pos.y);
     var c = 0;
     //below edits the list of food we have and removes food that is eaten from the world fro the food list
-    for (c = fList.length - 1; c >= 0; c--) {
+    for (c = fList.length - 1; c >= 0; c--) {   //loops through descending order of the food
         fList[c].show();
         if(player.eats(fList[c])) {
             fList.splice(c, 1);
