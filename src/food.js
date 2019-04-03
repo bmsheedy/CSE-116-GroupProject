@@ -7,3 +7,5 @@ function food(x, y, rad) {
         ellipse(this.pos.x, this.pos.y, this.radius*2, this.radius*2);
     }
 }
+
+//this file/class serves as the constructor for food
