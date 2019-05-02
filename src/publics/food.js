@@ -1,6 +1,6 @@
 function food(x, y, rad) {
     this.vec = createVector(x, y);
-    this.radius = rad;
+    this.rad = rad;
 
     var c = color(255)
     var red = color(255, 0, 0)
@@ -33,7 +33,7 @@ function food(x, y, rad) {
 
     this.show = function() {
         fill(c);
-        ellipse(this.vec.x, this.vec.y, this.radius*2, this.radius*2);
+        ellipse(this.vec.x, this.vec.y, this.rad*2, this.rad*2);
     }
 }
 
