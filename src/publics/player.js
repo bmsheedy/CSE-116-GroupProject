@@ -26,4 +26,18 @@ function Player(x, y, rad) {        //constructor for players
             return false;
         }
     };
+
+    this.eatPoison = function(f) {
+        var dis = p5.Vector.dist(this.vec, f.vec);
+        var PR = this.rad + f.rad;
+        if (dis < PR) {
+            if (this.rad >= f.rad) {
+                this.rad -= .5;
+                return true;
+            }
+        }
+        else {
+            return false;
+        }
+    };
 }

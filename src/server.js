@@ -1,4 +1,3 @@
-var fileSystem = require('fs')
 var express = require('express'); //calls up the module for express
 
 var app = express();            //calls the Express module
@@ -12,7 +11,6 @@ var socket = require('socket.io');
 var io = socket(server);
 
 var listOfPlayers = []; //used for game updating
-var storePlayers = []; //used for file writing
 
 function Player(name, x, y, rad) {
     this.name = name;
@@ -21,10 +19,10 @@ function Player(name, x, y, rad) {
     this.rad = rad;
 }
 
-function refresher() {
-    io.sockets.emit('refresher', listOfPlayers)
-}
 setInterval(refresher, 33);
+function refresher() {
+    io.sockets.emit('refresher', listOfPlayers);
+}
 
 io.sockets.on('connect',
     function(socket) {
@@ -49,14 +47,3 @@ io.sockets.on('connect',
             player.rad = data.rad;
         });
 });
-
-//below is a way to store data to a JSON file in Node.js
-/*function storingPlayers() {
-    for (var i = listOfPlayers.length; i >= 0; i++) {
-        var stored = JSON.stringify(listOfPlayers[i])
-        fileSystem.writeFile('data.json', stored, finish);
-    }
-}
-function finish(exam) {
-    console.log('data stored.');
-}*/
