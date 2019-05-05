@@ -60,6 +60,14 @@ function draw() {
     for (var p = pList.length - 1; p >= 0; p--) {
         fill(0, 0, 255);
         ellipse(pList[p].x, pList[p].y, pList[p].rad*2, pList[p].rad*2);
+
+        if(player.eatPlayers(pList[p])) {
+            pList.splice(p, 1);
+        }
+
+        if(player.OoB()){
+            pList.splice(p, 1);
+        }
     }
 
     player.show();

@@ -27,6 +27,20 @@ function Player(x, y, rad) {        //constructor for players
         }
     };
 
+    this.eatPlayers = function(otherPlayer) {
+        var dis = p5.Vector.dist(this.vec, otherPlayer.vec);
+        var RR = this.rad + otherPlayer.rad;
+        if(dis < RR){
+            if(this.rad > otherPlayer.rad){
+                this.rad += otherPlayer.rad;
+                return true;
+            }
+        }
+        else{
+            return false;
+        }
+    };
+
     this.eatPoison = function(f) {
         var dis = p5.Vector.dist(this.vec, f.vec);
         var PR = this.rad + f.rad;
@@ -38,6 +52,20 @@ function Player(x, y, rad) {        //constructor for players
         }
         else {
             return false;
+        }
+    };
+
+
+    this.OoB = function(){
+
+        if(this.vec.x > 500 || this.vec.x < -500){
+            return true;
+        }
+        else if(this.vec.y > 500 || this.vec.y <-500){
+            return true;
+        }
+        else{
+            return false
         }
     };
 }
