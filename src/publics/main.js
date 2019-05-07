@@ -18,7 +18,7 @@ function setup() {
         poisList[e] = new poison(random(-width, width), random(-height, height), 6);    //creates poison
         e += 1;
     }
-    player = new Player(random(width),random(height), 24);      //creates the player
+    player = new Player(0,0, 24);      //creates the player
     var data = {
         x: player.vec.x,
         y: player.vec.y,
@@ -28,7 +28,6 @@ function setup() {
     socket.on('refresher',
         function(data) {
             pList = data;   //updates list of players according to server
-            console.log(data)
         });
 }
 
@@ -58,15 +57,15 @@ function draw() {
     }
 
     for (var p = pList.length - 1; p >= 0; p--) {
-        fill(0, 0, 255);
-        ellipse(pList[p].x, pList[p].y, pList[p].rad*2, pList[p].rad*2);
+        var id = pList[p].id;
+        if (id.substring(2, id.length) !== socket.id) {
+            fill(0, 0, 255);
+            ellipse(pList[p].x, pList[p].y, pList[p].rad * 2, pList[p].rad * 2);
 
-        if(player.eatPlayers(pList[p])) {
-            pList.splice(p, 1);
-        }
-
-        if(player.OoB()){
-            pList.splice(p, 1);
+            fill(255);
+            textAlign(CENTER);
+            textSize(4);
+            text(pList[p].id, pList[p].x, pList[p].y + pList[p].rad);
         }
     }
 
