@@ -18,7 +18,7 @@ function setup() {
         poisList[e] = new poison(random(-1000, 1000), random(-1000, 1000), 6, 0, 0, 0);
         e += 1;
     }
-    player = new Player(0 , 0, 24, random(255), random(255), random(255));      //creates the player
+    player = new Player(0, 0, 24, random(255), random(255), random(255));      //creates the player
     //send player info to server
     var data = {
         x: player.vec.x,
@@ -130,6 +130,6 @@ function draw() {
         stroke(255);
         textAlign(CENTER);
         textSize(64);
-        text("You were killed! Refresh/Restart to try again.", width / 2, height / 2);
+        text("You were killed! Refresh/Restart to try again!", width / 2, height / 2);
     }
 }
