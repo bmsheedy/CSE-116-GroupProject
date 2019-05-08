@@ -52,7 +52,9 @@ function Player(x, y, rad, r, g, b) {        //constructor for players
         if (dis < RR) {
             var sum = Math.PI * this.rad * this.rad + Math.PI * rad * rad;  //combines areas of players, pi*r^2 of current + other
             this.rad = Math.sqrt(sum / Math.PI) //updating radius according to other player size
+            return true;
         }
+        return false;
     };
 
     this.eatPoison = function(f) {
@@ -75,3 +77,5 @@ function Player(x, y, rad, r, g, b) {        //constructor for players
         player.vec.y = constrain(this.vec.y, -1000, 1000);
     };
 }
+
+module.exports = Player;
