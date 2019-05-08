@@ -22,7 +22,7 @@ var data = {
 var express = require('express'); //calls up the module for express
 
 var app = express();            //calls the Express module
-var server = app.listen(43343);	//tells what port to host the game on
+var server = app.listen(43243);	//tells what port to host the game on
 
 
 app.use(express.static('src/publics')); //tells which folder to call files from

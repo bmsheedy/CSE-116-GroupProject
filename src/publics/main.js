@@ -6,7 +6,7 @@ var poisList = [];
 var pList = [];
 
 function setup() {
-    socket = io.connect('http://localhost:43343');
+    socket = io.connect('http://localhost:43243');
     createCanvas(windowWidth, windowHeight);        //sets up the world
     var t = 0;
     var e = 0;
