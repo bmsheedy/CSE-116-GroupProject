@@ -1,11 +1,12 @@
-function poison(x, y, rad) {
+function poison(x, y, rad, r, g, b) {
     this.vec = createVector(x, y);
     this.rad = rad;
-
-    var c = color(0);
+    this.r = r;
+    this.g = g;
+    this.b = b;
 
     this.show = function() {
-        fill(c);
+        fill(this.r, this.g, this.b);
         ellipse(this.vec.x, this.vec.y, this.rad*2, this.rad*2);
     }
 }

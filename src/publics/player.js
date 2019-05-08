@@ -1,7 +1,22 @@
-function Player(x, y, rad) {        //constructor for players
+function Player(x, y, rad, r, g, b) {        //constructor for players
     this.vec = createVector(x, y);
     this.rad = rad;
     this.velocity = createVector(0,0);
+    this.r = r;
+    this.g = g;
+    this.b = b;
+
+    //determine if a player is touching something (for player-player purpose)
+    this.contact = function (pos, rad) {
+        if (rad === 0  || this.rad === 0) {
+            return false;
+        }
+        var dist = p5.Vector.dist(this.vec, pos);
+        if (dist < this.rad + rad) {
+            return true;
+        }
+        return false;
+    };
 
     this.update = function() {  //updates position
         var velocity = createVector(mouseX-width/2, mouseY-height/2);
@@ -11,8 +26,12 @@ function Player(x, y, rad) {        //constructor for players
     };
 
     this.show = function() {    //updates display
-        fill(255, 255, 255);  //color of player
+        fill(this.r, this.g, this.b);  //color of player
         ellipse(this.vec.x, this.vec.y, this.rad*2, this.rad*2);
+        fill(255);
+        textAlign(CENTER);
+        textSize(4);
+        text(socket.id, this.vec.x, this.vec.y + this.rad);
     };
     //below determines what happens when you eat food
     this.eatFood = function(f) {
@@ -26,18 +45,13 @@ function Player(x, y, rad) {        //constructor for players
             return false;
         }
     };
-
-    this.eatPlayers = function(otherPlayer) {
-        var dis = p5.Vector.dist(this.vec, otherPlayer.vec);
-        var RR = this.rad + otherPlayer.rad;
-        if(dis < RR){
-            if(this.rad > otherPlayer.rad){
-                this.rad += otherPlayer.rad;
-                return true;
-            }
-        }
-        else{
-            return false;
+    //math for eating a player
+    this.eatPlayers = function(pos, rad) {
+        var dis = p5.Vector.dist(this.vec, pos);
+        var RR = this.rad + rad;
+        if (dis < RR) {
+            var sum = Math.PI * this.rad * this.rad + Math.PI * rad * rad;  //combines areas of players, pi*r^2 of current + other
+            this.rad = Math.sqrt(sum / Math.PI) //updating radius according to other player size
         }
     };
 
@@ -57,15 +71,7 @@ function Player(x, y, rad) {        //constructor for players
 
 
     this.OoB = function(){
-
-        if(this.vec.x > 500 || this.vec.x < -500){
-            return true;
-        }
-        else if(this.vec.y > 500 || this.vec.y <-500){
-            return true;
-        }
-        else{
-            return false
-        }
+        player.vec.x = constrain(this.vec.x, -1000, 1000);
+        player.vec.y = constrain(this.vec.y, -1000, 1000);
     };
 }
